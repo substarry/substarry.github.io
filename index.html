@@ -296,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/14/博客搭起来了/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/14/重拾博客/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Substarry.芭比">
@@ -315,7 +315,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/14/博客搭起来了/" itemprop="url">博客搭起来了(Hexo + GitHub)</a></h1>
+                <a class="post-title-link" href="/2018/05/14/重拾博客/" itemprop="url">重拾博客(Hexo + GitHub)</a></h1>
         
 
         <div class="post-meta">
@@ -388,38 +388,14 @@
 
       
         
-          
-            <p>一直想搭个人博客来记点什么，去年的时候在本地用Hexo和NexT主题弄了一个，但是后面一直没有更新，这次重新拾起，写个文章记录下搭建过程，也督促自己以后多写点东西。</p>
-<h2 id="安装及主题配置"><a href="#安装及主题配置" class="headerlink" title="安装及主题配置"></a>安装及主题配置</h2><p>这部分比较简单，官网上都有说明，按照下面链接中的步骤来做就行了。</p>
-<blockquote>
-<p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo</a><br><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT</a></p>
-</blockquote>
-<p>花时间比较多的地方在主题配置，主要是把标签、分类等页面加上，增加社交链接和本地搜索功能等。另外还有评论、统计等功能暂时还没添加，等后面再加。  </p>
-<p>在主题的配置时有一个小技巧，就是把主题目录下的配置文件 <code>_config.xml</code> (注意不是根目录下的)拷贝为 <code>/source/_data/next.yml</code>，后面只需要修改 <code>/source/_data/next.yml</code> 即可，这样可以把主题的源码和配置隔离开，避免主题升级时产生冲突，具体可参考<a href="https://github.com/iissnan/hexo-theme-next/issues/328" target="_blank" rel="noopener">官方说明</a>。</p>
-<h2 id="代码管理"><a href="#代码管理" class="headerlink" title="代码管理"></a>代码管理</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>为了便于管理，我把Hexo的代码和发布的文件放在 <code>substarry.github.io</code> 的不同分支上管理：</p>
-<blockquote>
-<p>master：用来存放发布的文件，这部分在Hexo配置文件里面配置即可，不需要自己来操作<br>hexo：用来存放hexo的代码</p>
-</blockquote>
-<p>查看根目录下的 <code>.gitignore</code> 文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/  </span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br></pre></td></tr></table></figure>
-<p>其中 <code>node_modules/</code> 主要依赖的一些模块，通过 <code>npm install</code> 即可下载不需要保存，<code>public/</code> 为发布的文件，在执行 <code>hexo d</code> 发布时会自动上传到 master 分支。</p>
-<p>对于 NexT 主题，我是直接 clone 的官方 github 仓库的，如果将来自己要修改，可以再建一个分支 theme-next 用来保存主题。</p>
-<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p>Hexo 发布配置(站点配置文件<code>_config.xml</code>)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:substarry/substarry.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>上传 Hexo 代码，先初始化 git 仓库并创建 hexo 分支：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git checkout -b hexo</span><br></pre></td></tr></table></figure>
-<p>设置 remote 地址：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/substarry/substarry.github.io.git</span><br></pre></td></tr></table></figure>
-<p>push 代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin hexo:hexo</span><br></pre></td></tr></table></figure>
-<h2 id="换电脑后的恢复方法"><a href="#换电脑后的恢复方法" class="headerlink" title="换电脑后的恢复方法"></a>换电脑后的恢复方法</h2><ul>
-<li>安装 Node.js 和 Hexo</li>
-<li>下载 Hexo 代码<br>  <code>git clone https://github.com/substarry/substarry.github.io.git -b hexo</code>   </li>
-<li>在 Hexo 代码根目录执行<br>  <code>npm install</code></li>
-<li>下载主题代码，自己仓库的 theme_next 分支 or 官方仓库</li>
-</ul>
-
-          
+          <p>一直想弄个人博客来记点什么，去年的时候在本地用Hexo和NexT主题弄了一个，但一直没有关联到GitHub上，这次重新拾起，写个文章记录下搭建过程，也督促自己以后多写点东西。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/14/重拾博客/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
